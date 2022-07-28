@@ -1,3 +1,6 @@
+let arrayParaTodos = []
+
+
 // Método Map ---------
 
 const arrayMap = [1, 2, 3, 4, 5]; //esse é o array que você terá que iterar
@@ -9,10 +12,13 @@ function callbackMap(element, index, array) {
 }
 
 function map(array, callback) {
-  //sua lógica
+  for (let i = 0; i < array.length; i++) {
+    arrayParaTodos.push(callback(array[i], i, array))
+  }
+  return arrayParaTodos
 }
 
-//console.table(map(arrayMap, callbackMap));
+// console.table(map(arrayMap, callbackMap));
 
 //Método Filter ---------
 
@@ -27,10 +33,17 @@ function callbackFilter(element, index, array) {
 }
 
 function filter(array, callback) {
-  //sua lógica
+  for (let i = 0; i < array.length; i++) {
+    let index = i
+    if (callback(array[index], index, array)) {
+      arrayParaTodos.push(array[index])
+    }
+
+  }
+  return arrayParaTodos
 }
 
-//console.log(filter(arrayFilter, callbackFilter));
+// console.log(filter(arrayFilter, callbackFilter));
 
 //Método Reduce ---------
 
@@ -39,11 +52,15 @@ const arrayReduce = [1, 2, 3, 4, 5]; //esse é o array que você terá que itera
 // função callback
 // Ela apenas soma os valores, como um acumulador mesmo
 function callbackReduce(acumulator, valorAtual) {
-  return acumulator + valorAtual;
+  return 0
+
 }
 
 function reduce(array, callback, initialValue = 0) {
-  //sua lógica
+  for (let i = 0; i < array.length; i++) {
+    initialValue += array[i]
+  }
+  return initialValue + callback()
 }
 
 // console.log(reduce(arrayReduce, callbackReduce));
