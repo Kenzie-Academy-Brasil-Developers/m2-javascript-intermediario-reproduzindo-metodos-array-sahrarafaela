@@ -52,15 +52,16 @@ const arrayReduce = [1, 2, 3, 4, 5]; //esse é o array que você terá que itera
 // função callback
 // Ela apenas soma os valores, como um acumulador mesmo
 function callbackReduce(acumulator, valorAtual) {
-  return 0
-
+  return acumulator + valorAtual;
 }
 
-function reduce(array, callback, initialValue = 0) {
-  for (let i = 0; i < array.length; i++) {
-    initialValue += array[i]
+function reduce(array, callback, initialValue = array[0]) {
+  for (let i = 1; i < array.length; i++) {
+    initialValue = callback(initialValue, array[i])
   }
-  return initialValue + callback()
+  return initialValue
+
+
 }
 
 // console.log(reduce(arrayReduce, callbackReduce));
